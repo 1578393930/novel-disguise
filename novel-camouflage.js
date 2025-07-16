@@ -15,6 +15,7 @@
 // @match        *://www.biquge.co/*/*.html
 // @match        *://www.52wx.com/*/*.html
 // @match        https://www.3bqg.cc/book/*/*.html
+// @match        https://www.58kanshu.cc/*/*.html
 // @match        https://www.bigee.cc/book/*/*.html
 // @match        https://www.beqege.cc/*/*.html
 // @match        https://www.biqukun.com/*/*/*.html
@@ -43,6 +44,8 @@
 // @grant        GM_getValue
 // @grant        GM_setValue
 // @require      https://libs.baidu.com/jquery/2.0.3/jquery.min.js
+// @downloadURL https://update.greasyfork.org/scripts/499657/%E5%B0%8F%E8%AF%B4%E9%A1%B5%E9%9D%A2%E4%BC%AA%E8%A3%85%7C%E5%B0%8F%E8%AF%B4%E9%A1%B5%E9%9D%A2%E7%B2%BE%E7%AE%80%7C%E8%B5%B7%E7%82%B9%E9%A1%B5%E9%9D%A2%E4%BC%AA%E8%A3%85%7C%E7%95%AA%E8%8C%84%E9%A1%B5%E9%9D%A2%E4%BC%AA%E8%A3%85%7C%E7%AC%94%E8%B6%A3%E9%98%81%E9%A1%B5%E9%9D%A2%E4%BC%AA%E8%A3%85.user.js
+// @updateURL https://update.greasyfork.org/scripts/499657/%E5%B0%8F%E8%AF%B4%E9%A1%B5%E9%9D%A2%E4%BC%AA%E8%A3%85%7C%E5%B0%8F%E8%AF%B4%E9%A1%B5%E9%9D%A2%E7%B2%BE%E7%AE%80%7C%E8%B5%B7%E7%82%B9%E9%A1%B5%E9%9D%A2%E4%BC%AA%E8%A3%85%7C%E7%95%AA%E8%8C%84%E9%A1%B5%E9%9D%A2%E4%BC%AA%E8%A3%85%7C%E7%AC%94%E8%B6%A3%E9%98%81%E9%A1%B5%E9%9D%A2%E4%BC%AA%E8%A3%85.meta.js
 // ==/UserScript==
 
 const resource = {
@@ -234,16 +237,16 @@ const resource = {
                     <label style="width: 30%;"><input type="radio" name="settings-hide-image" value="true">是</label>
                     <label style="width: 30%;"><input type="radio" name="settings-hide-image" value="false">否</label>
                 </div>
-                
+
                 <div class="nd-settings-form-group" style="margin-top: 20px;">
                     <div class="nd-settings-btn-wrapper">
                         <button type="button" name="tip">好活，当赏❤️</button>
                         <button type="submit">保存设置</button>
                     </div>
-                    
+
                 </div>
             </form>
-           
+
         `);
 
         //default
@@ -284,7 +287,7 @@ const resource = {
                         <img src="${resource.img.tip_alipay.base64}" alt="支付宝">
                         <img src="${resource.img.tip_wechat.base64}" alt="微信">
                     </div>
-                    
+
                 </div>
             `);
 
@@ -363,7 +366,7 @@ const resource = {
      * @param replaceParent 是否替换img的父元素(有些img会被a标签包裹)
      * @param indicatorText 占位文字
      */
-    function hideImages({selector, replaceParent = false, indicatorText = '点击显示图片'}) {
+    function hideImages({ selector, replaceParent = false, indicatorText = '点击显示图片' }) {
         if (!config.hideImage) {
             return;
         }
@@ -407,12 +410,12 @@ const resource = {
             background-repeat: no-repeat;
             background-size: 100% 100%;
         }
-        
+
         html {
             overflow-y: hidden;
             color-scheme: normal !important;
         }
-        
+
         #disguised-page {
             position: fixed;
             top: 0;
@@ -422,13 +425,13 @@ const resource = {
             display: flex;
             flex-direction: column;
         }
-        
+
         #disguised-header {
             width: 100%;
             aspect-ratio: ${screenInfo.screenWidth / headerHeight};
             background-image: url(${disguised_header_img});
         }
-        
+
         #disguised-title {
             position: fixed;
             top: 5px;
@@ -441,7 +444,7 @@ const resource = {
             line-height: 22px;
             user-select: none;
         }
-        
+
         #disguised-footer {
             height: ${footerHeight}px;
             line-height: ${footerHeight}px;
@@ -449,11 +452,11 @@ const resource = {
             background-image: url(${disguised_footer_img});
             font-size: 13px;
             color: #262626;
-            
+
             box-sizing: border-box;
             position: relative;
         }
-        
+
         #footer-content {
             position: absolute;
             left: 0;
@@ -469,14 +472,14 @@ const resource = {
             box-sizing: border-box;
             padding-left: 20px;
         }
-        
+
         #footer-content > * {
             height: 100%;
             line-height: 100%;
             margin-right: 10px;
             font-size: 13px;
         }
-        
+
         #disguised-body {
             flex: 1;
             padding-left: ${config.marginType === DICT.MARGIN_TYPE.NORMAL ? '25%' : '0'};
@@ -488,7 +491,7 @@ const resource = {
             width: 100%;
             box-sizing: border-box;
         }
-        
+
         #disguised-content {
             background-color: #FFF;
             border-left-color: #c6c6c6;
@@ -499,21 +502,21 @@ const resource = {
             width: 100%;
             box-sizing: border-box;
         }
-        
+
         #disguised-content > * {
             width: 100%;
             margin: unset;
             box-sizing: border-box;
         }
-        
+
         #disguised-content p {
             color: black;
         }
-        
+
         #disguised-content div {
             background-color: #FFF !important;
         }
-        
+
         #disguised-right-content {
             display: none;
             position: fixed;
@@ -523,14 +526,14 @@ const resource = {
             width: 400px;
             z-index: 99999;
         }
-        
+
         .disguised-link, .disguised-img-indicator {
             color: ${link_text_color};
             text-decoration: underline;
             cursor: pointer;
             margin-right: 5px;
         }
-        
+
         .disguised-modal-wrapper {
             position: fixed;
             z-index: 99999;
@@ -542,14 +545,14 @@ const resource = {
             border: 1px solid #707070;
             background-color: #F0F0F0;
         }
-        
+
         .disguised-modal-header {
             background-color: #FFF;
             min-width: 200px;
             height: 32px;
             display: flex;
         }
-        
+
         .disguised-modal-title {
             flex: 1;
             user-select: none;
@@ -558,7 +561,7 @@ const resource = {
             display: flex;
             align-items: center;
         }
-        
+
         .disguised-modal-header-close {
             position: relative;
             background-color: transparent;
@@ -593,7 +596,7 @@ const resource = {
         .disguised-modal-header-close::after {
             transform: translate(-50%, -50%) rotate(-45deg);
         }
-        
+
         .disguised-modal-body {
             padding: 10px;
             background-color: #F0F0F0;
@@ -603,28 +606,28 @@ const resource = {
             line-height: normal;
             overflow-y: auto;
         }
-        
+
         .disguised-modal-wrapper * {
             margin: unset;
         }
-        
+
         .nd-settings-form {
             font-family: 'Microsoft YaHei', sans-serif;
             width: 300px;
             box-shadow: none;
         }
-        
+
         .nd-settings-form-group:not(:last-child) {
             margin-bottom: 15px;
         }
-        
+
         .nd-settings-form-group label {
             display: inline-block;
             font-size: 13px;
             color: #000;
             margin-bottom: 5px;
         }
-        
+
         .nd-settings-form-group select,
         .nd-settings-form-group input[type="radio"] {
             font-size: 13px;
@@ -633,12 +636,12 @@ const resource = {
             background-color: white;
             width: auto;
         }
-        
+
         .nd-settings-form-group input[type="radio"] {
             width: auto;
             margin-right: 5px;
         }
-        
+
         .nd-settings-form-group button {
             font-size: 13px;
             padding: 5px 10px;
@@ -648,36 +651,36 @@ const resource = {
             background-color: #e0e0e0;
             cursor: pointer;
         }
-        
+
         .nd-settings-form-group button[type="submit"] {
             background-color: #dcdcdc;
         }
-        
+
         .nd-settings-form-group button:hover {
             background-color: #c0c0c0;
         }
-        
+
         .nd-settings-form-group button:active {
             background-color: #a0a0a0;
         }
-        
+
         .nd-settings-form-group button:focus {
             outline: 1px solid #606060;
         }
-        
+
         .nd-settings-form-group select {
             margin-right: 5px;
             width: 180px;
         }
-        
+
         .nd-settings-form-group select:focus-visible {
             outline: none;
         }
-        
+
         .nd-settings-form-group label:first-child {
             width: 100px;
         }
-        
+
         .nd-settings-form p {
             margin-bottom: 10px;
         }
@@ -687,20 +690,20 @@ const resource = {
             justify-content: space-between;
         }
 
-        
+
         .nd-tip-content {
             font-size: 1.3em;
         }
-        
+
         .tip-img-wrapper {
             display: flex;
             justify-content: space-between;
         }
-        
+
         .tip-img-wrapper img {
             width: 48%;
         }
-        
+
         .nd_msg{display:none;position:fixed;top:10px;left:50%;transform:translateX(-50%);color:#fff;text-align:center;z-index:99996;padding:10px 30px;font-size:16px;border-radius:10px;background-size:25px;background-repeat:no-repeat;background-position:15px}
         .nd_msg a{color:#fff;text-decoration: underline;}
         .nd_msg-ok{background:#4bcc4b}
@@ -719,7 +722,7 @@ const resource = {
                 <div id='disguised-title'></div>
                 <div id='disguised-header' class='img-fill-in'></div>
                 <div id='disguised-body'>
-                    <div id='disguised-content'></div> 
+                    <div id='disguised-content'></div>
                     <div id='disguised-right-content'></div>
                 </div>
                 <div id='disguised-footer' class='img-fill-in'>
@@ -753,7 +756,7 @@ const resource = {
                 overflow-x: hidden;
                 overflow-y: scroll;
             }
-            
+
             table {
                 margin: 0;
             }
@@ -767,11 +770,11 @@ const resource = {
             .excel-table {
                 border-collapse: collapse;
             }
-            
+
             .excel-table > thead {
                 background-color: ${config.theme === DICT.THEME.OFFICE ? '#E6E6E6' : '#EEEEEE'};
             }
-            
+
             .excel-table > thead > tr > th {
                 font-weight: normal;
                 font-size: 14px;
@@ -787,7 +790,7 @@ const resource = {
                 line-height: normal;
                 z-index: 9999;
             }
-            
+
             .excel-table th {
                 min-width: 71px;
             }
@@ -1013,7 +1016,7 @@ const resource = {
         const screenHeight = window.screen.height;
         const devicePixelRatio = window.devicePixelRatio || 1;
         const physicalWidth = screenWidth * devicePixelRatio;
-        return {screenWidth, screenHeight, devicePixelRatio, physicalWidth};
+        return { screenWidth, screenHeight, devicePixelRatio, physicalWidth };
     }
 
     function generateRandomContent(type = 1) {
@@ -1100,7 +1103,7 @@ const resource = {
         <div class="disguised-modal-wrapper">
             <div class="disguised-modal-header">
                 <div class="disguised-modal-title">${modalConfig.title || ""}</div>
-                
+
             </div>
             <div class="disguised-modal-body"></div>
         </div>
@@ -1184,7 +1187,7 @@ const resource = {
         document.cookie = name + "=" + (value || "") + expires + domainStr + "; path=/";
     }
 
-/////////////////////////////针对站点
+    /////////////////////////////针对站点
 
     /**
      * 起点
@@ -1224,14 +1227,14 @@ const resource = {
         #page-ops {
             // display: none !important;
         }
-        
+
         .excel-table tbody td, .excel-table tbody td p {
             font-family: unset;
         }
         .excel-table tbody td p {
             margin-top: 0 !important;
         }
-      
+
         `);
 
         const $mainContent = $("main.content");
@@ -1258,7 +1261,7 @@ const resource = {
             if (!$('main.content').hasClass('lock-mask')) {
                 //收费
                 const targetNode = document.querySelector('main.content');
-                const config = {childList: true};
+                const config = { childList: true };
                 const callback = function (mutationsList, observer) {
                     for (let mutation of mutationsList) {
                         if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
@@ -1310,7 +1313,7 @@ const resource = {
                 line-height: unset;
                 height: 20px;
             }
-            
+
         `);
 
         function observeComments() {
@@ -1329,7 +1332,7 @@ const resource = {
                 }
             };
             const observer2 = new MutationObserver(callback2);
-            observer2.observe(targetNode2, {childList: true});
+            observer2.observe(targetNode2, { childList: true });
         }
 
         function setInfo() {
@@ -1364,28 +1367,28 @@ const resource = {
         .muye-reader-nav {
             display: none !important;
         }
-        
+
         .byte-btn {
             background: ${link_bg_color} !important;
             color: ${link_front_color} !important;
         }
-        
+
         .reader-toolbar {
             display: none;
         }
-        
+
         .muye-reader-box {
             padding-top: 50px;
         }
-        
+
         .excel-table tbody td, .excel-table tbody td p {
             font-family: unset;
         }
-        
+
         p {
             margin: 0;
         }
-        
+
         `);
 
         setWordContent($(".muye-reader-inner"));
@@ -1430,27 +1433,75 @@ const resource = {
         #read_tj {
             display: none;
         }
-        
+
         .section-opt {
             border-top: none !important;
             border-bottom: none !important;
             color: ${link_text_color};
         }
-        
+
         .section-opt a {
             color: ${link_text_color} !important;
         }
-        
+
         .reader-main > a {
             display: none;
         }
-        
+
         `);
 
         setWordContent($(".reader-main"));
         setDisguisedTitle($(".title").text());
         setExcelContent($("#content"), "p");
         setExcelLines([$(".section-opt").first()], true);
+    }
+
+    /**
+     * 58看书网
+     * 58kanshu.cc
+     */
+    function wubakanshu() {
+
+        GM_addStyle(`
+            .info_dv1 .title,
+            .info_dv1 .ewm,
+            .info_dv1 .chapter-title {
+                display: none !important;
+            }
+
+            .novel_chapter .info_dv1>p {
+                font-family: "Microsoft YaHei", "SimSun", "SimHei", Arial, sans-serif !important; /* 优先使用微软雅黑，其次是宋体、黑体等 */
+                font-size: 16px !important; /* 字体大小 */
+                line-height: 1.8 !important; /* 行高，值越大行距越宽 */
+                color: #333333 !important; /* 字体颜色，深灰色更适合阅读 */
+                max-width: 800px !important;
+                margin: 0 auto !important;
+                padding: 20px !important;
+            }
+
+            .info_dv1 p {
+                margin-bottom: 15px !important;
+                text-indent: 2em !important;
+            }
+
+            .info_dv1 {
+            box-shadow: none !important;
+            }
+
+            #disguised-content {
+                width: 100% !important; /* 宽度与父容器一致 */
+                max-width: inherit !important; /* 继承info_dv1的最大宽度限制 */
+                margin: 0 auto !important; /* 保持居中 */
+                box-sizing: border-box !important;
+            }
+        `);
+
+        $(".info_dv1").removeClass("y");
+        $(".info_dv1 .read_btn:first").remove();
+        setWordContent($(".info_dv1")); // 章节内容
+        setDisguisedTitle($(".chapter-title").text()); // 章节标题
+        setExcelContent($(".info_dv1"), "p");
+        setExcelLines([$(".read_btn").last()], true);
     }
 
     /**
@@ -1465,16 +1516,16 @@ const resource = {
         .con_top, #listtj, #content_tip, .bookname>h1, #bdshare, #content>p {
             display: none;
         }
-        
+
         .box_con {
             border: none;
         }
-        
+
         .bookname {
             border-bottom: none;
             color: ${link_text_color};
         }
-        
+
         .bottem2 {
             border-top: none;
             color: ${link_text_color};
@@ -1483,15 +1534,15 @@ const resource = {
             margin: 0;
             padding: 0;
         }
-        
+
         .bottem1>a, .bottem2>a {
             color: ${link_text_color};
         }
-        
+
         .box_con > table {
             display: none !important;
         }
-        
+
         `);
 
         $("#content>p").remove();
@@ -1542,11 +1593,11 @@ const resource = {
             border-top: none !important;
             border-bottom: none !important;
         }
-        
+
         .content > h1, .content > .link, .readinline {
             display: none !important;
         }
-        
+
         .Readpage a{
             color: ${link_text_color} !important;
             text-shadow: none !important;
@@ -1585,16 +1636,16 @@ const resource = {
         .box_con {
             border: none !important;
         }
-        
+
         .read-novel-link, #device, .con_top, .bookname>h1, #test1{
             display: none !important;
         }
-        
+
         .bottem1, .bottem2 {
             border-top: none !important;
             border-bottom: none !important;
         }
-        
+
         .bottem1 a, .bottem2 a {
             color: ${link_text_color} !important;
         }
@@ -1622,11 +1673,11 @@ const resource = {
         .lm {
             display: none !important;
         }
-        
+
         .bookname {
             border-bottom: none !important;
         }
-        
+
         .box_con > table {
             display: none !important;
         }
@@ -1644,14 +1695,14 @@ const resource = {
         #readSet, .book>h1, .chase-book-btn {
             display: none !important;
         }
-        
+
         .read-page, .read-page a {
             border-top: none !important;
             border-bottom: none !important;
             border-left: none !important;
             border-right: none !important;
         }
-        
+
         @media (min-width: 768px) {
             .book {
                 padding: unset;
@@ -1675,11 +1726,11 @@ const resource = {
         #content {
             padding: 20px;
         }
-        
+
         #foottext {
             text-align: center;
         }
-        
+
         #foottext a {
             color: ${link_text_color};
         }
@@ -1999,7 +2050,7 @@ const resource = {
         }
         `);
 
-        hideImages({selector: '#article-main-contents img'});
+        hideImages({ selector: '#article-main-contents img' });
         registerImageIndicators();
 
         setWordContent($(".article-content"));
@@ -2180,8 +2231,8 @@ const resource = {
         setWordDetail($("small"));
         setWordContent($("#Main"));
 
-        hideImages({selector: ".topic_content img.embedded_image"});
-        hideImages({selector: ".reply_content img.embedded_image", replaceParent: true});
+        hideImages({ selector: ".topic_content img.embedded_image" });
+        hideImages({ selector: ".reply_content img.embedded_image", replaceParent: true });
 
         if (config.mode === DICT.MODE.EXCEL) {
             const $outdated = $(".outdated");
@@ -2226,11 +2277,11 @@ const resource = {
                 $(".subtle")
                     .toArray()
                     .flatMap(el => {
-                            const arr = $(el).find(".topic_content").html()
-                                .split(/<br\s*\/?>/i);
-                            arr.unshift($(el).children().first().text());
-                            return arr;
-                        }
+                        const arr = $(el).find(".topic_content").html()
+                            .split(/<br\s*\/?>/i);
+                        arr.unshift($(el).children().first().text());
+                        return arr;
+                    }
                     ), true);
             setExcelLines([$(".topic_buttons")], true);
 
@@ -2241,19 +2292,19 @@ const resource = {
             setExcelLines($("div[id^='r_']")
                 .toArray()
                 .flatMap(el => {
-                        const $reply = $(el).find("td").eq(2);
-                        const $name = $reply.find("strong");
-                        const $badges = $reply.find(".badges");
-                        const $ago = $reply.find("span.ago");
-                        const $thanks = $reply.children('span').eq(1);
-                        const $feedback = $reply.find(".fr").first();
-                        $name.css("margin-right", "10px");
-                        $badges.css("margin-right", "10px");
-                        $ago.css("margin-right", "10px");
-                        const $sender = $name.add($ago).add($feedback).add($badges).add($thanks).wrapAll("<span/>");
-                        const content = $reply.find(".reply_content").html().split(/<br\s*\/?>/i);
-                        return [$sender, ...content];
-                    }
+                    const $reply = $(el).find("td").eq(2);
+                    const $name = $reply.find("strong");
+                    const $badges = $reply.find(".badges");
+                    const $ago = $reply.find("span.ago");
+                    const $thanks = $reply.children('span').eq(1);
+                    const $feedback = $reply.find(".fr").first();
+                    $name.css("margin-right", "10px");
+                    $badges.css("margin-right", "10px");
+                    $ago.css("margin-right", "10px");
+                    const $sender = $name.add($ago).add($feedback).add($badges).add($thanks).wrapAll("<span/>");
+                    const content = $reply.find(".reply_content").html().split(/<br\s*\/?>/i);
+                    return [$sender, ...content];
+                }
                 ), true);
             setExcelLines([$paginator.clone()], true);
 
@@ -2444,7 +2495,7 @@ const resource = {
         `);
     }
 
-///////////////////////////// 站点结束
+    ///////////////////////////// 站点结束
 
     // 切换原版界面
     document.addEventListener('keydown', function (event) {
@@ -2478,7 +2529,7 @@ const resource = {
             color: black;
             font-size: 14px;
         }
-        
+
         .nd-switch-key {
             border: solid 1px black;
             border-radius: 8px;
@@ -2567,6 +2618,9 @@ const resource = {
             break;
         case 'www.ciweimao.com':
             ciweimao_com();
+            break;
+        case 'www.58kanshu.cc':
+            wubakanshu();
             break;
         case 'www.v2ex.com':
             if (currentPathName.startsWith('/t/')) {
